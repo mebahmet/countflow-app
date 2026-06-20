@@ -22,6 +22,8 @@ jobs:
           cache: true
       - name: Generate Android platform files
         run: flutter create . --platforms android --org com.countflow --project-name countflow
+      - name: Update Kotlin version for home_widget compatibility
+        run: sed -i "s/ext.kotlin_version = '1.7.1'/ext.kotlin_version = '1.9.0'/" android/build.gradle
       - run: flutter pub get
       - name: Generate Hive adapters
         run: flutter pub run build_runner build --delete-conflicting-outputs
