@@ -21,6 +21,7 @@ jobs:
           channel: stable
           cache: true
       - run: flutter pub get
+      - run: flutter create . --platforms android --org com.countflow --project-name countflow
       - run: flutter pub run build_runner build --delete-conflicting-outputs
       - run: flutter gen-l10n
       - run: flutter test
@@ -47,6 +48,7 @@ jobs:
           channel: stable
           cache: true
       - run: flutter pub get
+      - run: flutter create . --platforms ios --org com.countflow --project-name countflow
       - run: flutter pub run build_runner build --delete-conflicting-outputs
       - run: flutter gen-l10n
       - run: flutter build ios --release --no-codesign
