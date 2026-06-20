@@ -22,17 +22,19 @@ jobs:
           cache: true
       - name: Generate Android platform files
         run: flutter create . --platforms android --org com.countflow --project-name countflow
-      - name: Fix Kotlin version (share_plus requires 1.9.0)
+      - name: Fix Kotlin stdlib conflict (share_plus requires 1.9.0)
         run: |
-          python3 -c "
-          import re
-          with open('android/build.gradle', 'r') as f:
-              content = f.read()
-          content = re.sub(r\"ext\\.kotlin_version = '[^']+'\", \"ext.kotlin_version = '1.9.0'\", content)
-          with open('android/build.gradle', 'w') as f:
-              f.write(content)
-          print('Done:', re.search(r'kotlin_version.*', content).group())
-          "
+          cat >> android/app/build.gradle << 'GRADLE'
+
+          configurations.all {
+              resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+                  if (details.requested.group == 'org.jetbrains.kotlin') {
+                      details.useVersion '1.9.0'
+                      details.because 'Align Kotlin stdlib version for share_plus'
+                  }
+              }
+          }
+          GRADLE
       - run: flutter pub get
       - name: Generate Hive adapters
         run: flutter pub run build_runner build --delete-conflicting-outputs
