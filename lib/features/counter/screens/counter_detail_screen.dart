@@ -320,7 +320,7 @@ class _DailyChart extends StatelessWidget {
         x: e.key,
         barRods: [
           BarChartRodData(
-            toY: e.value.toDouble(),
+            toY: e.value.value.toDouble(),
             color: color.withOpacity(0.8),
             width: 10,
             borderRadius: BorderRadius.circular(4),
@@ -335,10 +335,10 @@ class _DailyChart extends StatelessWidget {
         gridData: const FlGridData(show: false),
         borderData: FlBorderData(show: false),
         titlesData: const FlTitlesData(
-          left: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          right: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          top: AxisTitles(sideTitles: SideTitles(showTitles: false)),
-          bottom: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          leftTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          rightTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          topTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
+          bottomTitles: AxisTitles(sideTitles: SideTitles(showTitles: false)),
         ),
         barTouchData: BarTouchData(enabled: false),
       ),
