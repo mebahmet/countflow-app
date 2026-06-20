@@ -5,7 +5,6 @@ import 'package:uuid/uuid.dart';
 import '../constants/app_constants.dart';
 import '../models/counter_model.dart';
 import '../models/tally_entry_model.dart';
-import '../../shared/theme/app_theme.dart';
 
 class CounterProvider extends ChangeNotifier {
   late Box<CounterModel> _countersBox;

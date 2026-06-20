@@ -1,5 +1,4 @@
 import 'package:hive/hive.dart';
-import '../../shared/theme/app_theme.dart';
 
 part 'counter_model.g.dart';
 
@@ -117,9 +116,8 @@ class CounterModel extends HiveObject {
   }
 }
 
-// Hive adapter — run: flutter pub run build_runner build
 @HiveType(typeId: 2)
-enum CounterCategoryHive {
+enum CounterCategory {
   @HiveField(0) general,
   @HiveField(1) dhikr,
   @HiveField(2) health,
