@@ -38,7 +38,7 @@ jobs:
           retention-days: 30
 
   build-ios:
-    name: Build iOS IPA
+    name: Build iOS (simulator)
     runs-on: macos-latest
     steps:
       - uses: actions/checkout@v4
@@ -51,16 +51,9 @@ jobs:
       - run: flutter create . --platforms ios --org com.countflow --project-name countflow
       - run: flutter pub run build_runner build --delete-conflicting-outputs
       - run: flutter gen-l10n
-      - run: flutter build ios --release --no-codesign
-      - name: Create IPA
-        run: |
-          mkdir -p build/ios/ipa
-          cd build/ios/Release-iphoneos
-          mkdir Payload
-          cp -r Runner.app Payload/
-          zip -r ../ipa/CountFlow-unsigned.ipa Payload/
+      - run: flutter build ios --simulator
       - uses: actions/upload-artifact@v4
         with:
-          name: ios-ipa-unsigned
-          path: build/ios/ipa/CountFlow-unsigned.ipa
+          name: ios-simulator-build
+          path: build/ios/iphonesimulator/Runner.app
           retention-days: 30
