@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+import '../core/models/counter_model.dart';
+
 class AppTheme {
   // Brand colors
   static const Color deepNight = Color(0xFF1A0E3D);
@@ -293,4 +295,3 @@ class CategoryColors {
   };
 }
 
-enum CounterCategory { general, dhikr, health, sport, work, habit, score }
